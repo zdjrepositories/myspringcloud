@@ -1,4 +1,4 @@
-package hlzq.springcloud.cloud;
+package hlzq.springcloud;
 
 /**
  * @author 张冬军

@@ -1,7 +1,6 @@
-package hlzq.springcloud.cloud.contorller;
+package hlzq.springcloud.contorller;
 
-import hlzq.springcloud.cloud.entities.CommonResult;
-import hlzq.springcloud.cloud.entities.Payment;
+import hlzq.springcloud.entities.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
