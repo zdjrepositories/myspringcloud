@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 @Slf4j
 public class OrderContorller {
 
-    public static final String PAYMENT_URL="http://localhost:8001";
+    public static final String PAYMENT_URL="http://127.0.0.1:8001";
     @Resource
     private RestTemplate restTemplate;
 
