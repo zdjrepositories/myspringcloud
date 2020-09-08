@@ -1,4 +1,4 @@
-package hlzq.springcloud.cloud.entities;
+package hlzq.springcloud.entities;
 
 
 import lombok.AllArgsConstructor;

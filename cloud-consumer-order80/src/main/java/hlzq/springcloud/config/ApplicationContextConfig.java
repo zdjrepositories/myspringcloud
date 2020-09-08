@@ -1,4 +1,4 @@
-package hlzq.springcloud.cloud.config;
+package hlzq.springcloud.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

@@ -1,10 +1,8 @@
 package hlzq.springcloud.contriller;
 
-import hlzq.springcloud.entities.CommonResult;
-import hlzq.springcloud.entities.Payment;
+import hlzq.springcloud.entities.*;
 import hlzq.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
