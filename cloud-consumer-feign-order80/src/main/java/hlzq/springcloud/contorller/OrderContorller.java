@@ -1,7 +1,7 @@
 package hlzq.springcloud.contorller;
 
-import hlzq.springcloud.entities.CommonResult;
-import hlzq.springcloud.entities.Payment;
+import hlzq.springcloud.entities.*;
+import hlzq.springcloud.service.PaymentFeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,21 +20,15 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 public class OrderContorller {
-
-    public static final String PAYMENT_URL="http://cloud-payment-service";
     @Resource
-    private RestTemplate restTemplate;
+    private PaymentFeignService paymentFeignService;
 
 
-    @GetMapping("/consumer/payment/create")
-    public CommonResult<Payment> create(Payment payment){
-       return restTemplate.postForObject(PAYMENT_URL+"/payment/create",payment,CommonResult.class );
-    }
 
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult<Payment> getPayment(@PathVariable("id")Long id){
-
-        return restTemplate.getForObject(PAYMENT_URL+"/payment/get/"+id,CommonResult.class );
+        System.out.println("张冬军"+paymentFeignService.getPaymentById(id) );
+        return paymentFeignService.getPaymentById(id);
     }
 
 }
