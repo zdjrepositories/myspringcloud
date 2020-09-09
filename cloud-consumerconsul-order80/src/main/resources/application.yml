@@ -6,8 +6,11 @@ spring:
     name: cloud-consumer-order
 
   cloud:
-    zookeeper:
-      connect-string: 192.168.100.100:2181,192.168.100.101:2181,192.168.100.102:2181
+    consul:
+      hostname: 127.0.0.1
+      management-port: 8500
+      discovery:
+        service-name: ${spring.application.name}
 
   datasource:
     # 当前数据源操作类型
