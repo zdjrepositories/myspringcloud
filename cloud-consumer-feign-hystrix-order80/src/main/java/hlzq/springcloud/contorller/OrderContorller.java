@@ -38,7 +38,6 @@ public class OrderContorller {
 //            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),  //错误率达到多少跳闸
     })
     public String paymentInfo_TimeOutHandler(Integer id) {
-        return "线程池：" + Thread.currentThread().getName() + "80运行报错    paymentInfo_TimeOutHandler, id:  " + id + "\t----超时";
-    }
+        return paymentFeignService.p(id);}
 
 }
