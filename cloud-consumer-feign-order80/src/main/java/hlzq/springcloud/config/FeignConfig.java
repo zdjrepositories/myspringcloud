@@ -1,9 +1,11 @@
 package hlzq.springcloud.config;
 
+import feign.Logger;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+
 
 /**
  * @author 张冬军
@@ -11,10 +13,9 @@ import org.springframework.web.client.RestTemplate;
  * @date 2020/9/7 13:46
  */
 @Configuration
-public class ApplicationContextConfig {
+public class FeignConfig {
     @Bean
-    @LoadBalanced
-    public RestTemplate getRestTemplate(){
-        return new RestTemplate();
+    Logger.Level feignLoggerLevel(){
+        return Logger.Level.FULL;
     }
 }
