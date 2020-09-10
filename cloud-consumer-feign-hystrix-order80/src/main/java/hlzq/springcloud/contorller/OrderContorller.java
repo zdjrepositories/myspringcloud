@@ -1,24 +1,34 @@
-package hlzq.springcloud.service;
+package hlzq.springcloud.contorller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import hlzq.springcloud.entities.*;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
+import hlzq.springcloud.service.PaymentFeignService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.TimeUnit;
+import javax.annotation.Resource;
 
 /**
  * @author 张冬军
  * @version 1.0
- * @date 2020/9/7 10:41
+ * @date 2020/9/7 13:42
  */
-@Service
-public class PaymentService {
 
-    public String paymentInfo_OK(Integer id) {
-        return "线程池：" + Thread.currentThread().getName() + "   paymentInfo_OK, id:  " + id + "\t------";
+@RestController
+@Slf4j
+public class OrderContorller {
+    @Resource
+    private PaymentFeignService paymentFeignService;
+
+
+
+    @GetMapping("/payment/hystrix/{id}")
+    public String getPayment1(@PathVariable("id")Integer id){
+        return paymentFeignService.p(id);
     }
+    @GetMapping("/payment/hystrix2/{id}")
 
     @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
@@ -27,18 +37,8 @@ public class PaymentService {
 //            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //休眠时间窗
 //            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),  //错误率达到多少跳闸
     })
-    public String paymentInfo_TimeOut(Integer id) {
-
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return "线程池：" + Thread.currentThread().getName() + "   paymentInfo_TimeOut, id:  " + id + "\t------耗时3秒";
-
-    }
-
     public String paymentInfo_TimeOutHandler(Integer id) {
-        return "线程池：" + Thread.currentThread().getName() + "运行报错    paymentInfo_TimeOutHandler, id:  " + id + "\t----超时";
+        return "线程池：" + Thread.currentThread().getName() + "80运行报错    paymentInfo_TimeOutHandler, id:  " + id + "\t----超时";
     }
+
 }

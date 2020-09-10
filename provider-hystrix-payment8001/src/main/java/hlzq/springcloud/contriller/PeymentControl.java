@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 @Slf4j
 public class PeymentControl {
 
-
+@Resource
     private PaymentService paymentService;
 
     @Value("${server.port}")
@@ -30,16 +30,15 @@ public class PeymentControl {
 
     @GetMapping(value = "/payment/hystrix/{id}")
     public String paymentInfo_OK(@PathVariable("id") Integer id){
-        paymentService=new PaymentService();
        String result=paymentService.paymentInfo_OK(id);
         log.info("*****result:"+result);
         return result;
     }
+
     @GetMapping(value = "/payment/hystrix2/{id}")
     public String paymentInfo_TimeOut(@PathVariable("id") Integer id){
-        paymentService=new PaymentService();
         String result=paymentService.paymentInfo_TimeOut(id);
-        log.info("*****result:"+result);
+        log.info("result:"+result);
         return result;
     }
 }
