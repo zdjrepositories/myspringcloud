@@ -21,11 +21,10 @@ public class PaymentService {
     }
 
     @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
-//            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),              //是否开启断路器
-//            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),    //请求数达到后才计算
-//            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //休眠时间窗
-//            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),  //错误率达到多少跳闸
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),              //是否开启断路器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),    //请求数达到后才计算
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //休眠时间窗
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),  //错误率达到多少跳闸
     })
     public String paymentInfo_TimeOut(Integer id) {
 
